@@ -1,0 +1,29 @@
+<h1>La météo d’une ville</h1>
+
+<form (ngSubmit)="chercher()">
+  <label for="ville">Nom de la ville :</label>
+
+  <input
+    id="ville"
+    name="ville"
+    type="text"
+    [(ngModel)]="nomVille"
+    placeholder="Exemple : Paris"
+  />
+
+  <button type="submit">Rechercher</button>
+</form>
+
+@if (erreur()) {
+  <p role="alert">{{ erreur() }}</p>
+}
+
+@if (conditions(); as meteo) {
+  <h2>Résultat météo : {{ lieu() }}</h2>
+
+  <p>Température : {{ meteo.temperature_2m }} °C</p>
+  <p>Ressenti : {{ meteo.apparent_temperature }} °C</p>
+  <p>Humidité : {{ meteo.relative_humidity_2m }} %</p>
+  <p>Vent : {{ meteo.wind_speed_10m }} km/h</p>
+  <p>Précipitations : {{ meteo.precipitation }} mm</p>
+}
